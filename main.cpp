@@ -10,6 +10,7 @@ void runConvolution(char *inVolume1, int x1, int y1, int z1, int depth,
 
 int main(int argc, char **argv) {
  bool flag = false;
+
  if ( argc ==29 ) {
    if ( (argv[1][0] == '-' && argv[1][1] == 'i' ) &&
 	(argv[3][0]  == '-' && argv[3][1] == 'x' ) &&
@@ -25,12 +26,11 @@ int main(int argc, char **argv) {
 	(argv[23][0] == '-' && argv[23][1] == 'p' ) &&
 	(argv[25][0] == '-' && argv[25][1] == 'r' ) &&
     (argv[27][0] == '-' && argv[27][1] == 'o' )) {
-
+	
     runConvolution( argv[2], atoi(argv[4]), atoi(argv[6]), atoi(argv[8]), atoi(argv[10]), 
 		    argv[12], atoi(argv[14]), atoi(argv[16]), atoi(argv[18]), atoi(argv[20]),
 		    atoi(argv[22]), atoi(argv[24]), atoi(argv[26]), argv[28] );
-    flag = true;
-  
+	flag = true;
    }
  }
 
@@ -52,5 +52,7 @@ int main(int argc, char **argv) {
    std::cout<<"\n-o    output image"<<std::endl;
    std::cout<<"\nExample: myfilter -i man.raw -x 256 -y 256 -z 100 -d 16 -k gauss3x3x3.raw -a 3 -b 3 -c 3 -m 0 -n 0 -p 32000 -r 0 -o blur.raw"<<std::endl;
  }
+
+ system("pause");
 
 }// End main()

@@ -123,7 +123,8 @@ void aConvolution<T,U>::make(aImage<T> &img1, aImage<T> &img2, aImage<T> &out) {
   } // end for k
 
   // Clean memory
-  delete pGrid;
+  //delete pGrid;
+  //pGrid->release();
 
 }//end aConvolution<T,U>::makeConvolution() 
 

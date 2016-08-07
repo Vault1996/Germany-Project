@@ -4,39 +4,28 @@
 #include <aInputOutput.h>
 #include <limits.h>
 
-/******************************************************************************
+// method to create irregullary sampled photo
+void createBadPhoto() {
+	srand(55);
+	aImage<short> volume1( 256, 256, 1 );
+	aInputOutput<short> ioObj;
+      ioObj.readRaw( "cman_16bits.raw", volume1 );
+	  intPOINT P;
+	  for ( int k=0; k<1; k++ ) {  
+		  P.z = k;
+		  for ( int j=0; j<256; j++ ) {
+			  P.y = j;
+			  for ( int i=0; i<256; i++ ) { 
+				  P.x = i;
+				  if( rand()%4 == 3 ) {
+					  volume1.elem ( P.x, P.y, P.z ) = 0;
+				  }
+			  }
+		  }
+	  }
+	  ioObj.writeRaw ("c11man_16bits.raw", volume1);
+}
 
-   Author:          Oleg Krivonos (C) 9/10/1998
-
-   Project name:    vgl-extension classes test
-
-   Date:            9/21/1999
-
-   Name:            runConvolution
-
-   Description:     
-   algorithm:  Create skeleton image by using thinning algorithm 
-
-
-   called by: 
-              
-
-   calls: 
-
-
-   tested:    not yet
-
-   preconditions: 
-              Volume dataset have to be initialized
-
-   postconditions: 
-
-
-   possible problems: 
-	      
-   Parameters:     
-
-********************************************************************************/
 
 void runConvolution(char *inVolume1, int x1, int y1, int z1, int depth, 
 		    char *inVolume2, int x2, int y2, int z2, int method_id, int norm, 
